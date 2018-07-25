@@ -1,0 +1,34 @@
+<!-- let's present the variables just for debugging reasons -->
+{{username}}
+<br> {{password}}
+<br> {{showPassword}}
+
+<!-- we create a form -->
+<form class="revive-login">
+  <!-- this is the username input element, the placeholder attribute states to the
+       browser what to show when the field is empty. In order to use ngModel (see
+       below) we need to have a name attribute on the element!! -->
+  <input type="text" placeholder="username" [(ngModel)]="username" name="username">
+  <!-- this is the password input element, ngModel "connects" the controller field
+       username to the content of the input element via "two-way binding" and thus
+       if the value of the value of the variable changes the UI is updated automatically
+       and also when the user changes the content of the element, the variable value is
+       updated automaticaly.
+      
+       To use [(ngModel)] we need to import the Forms module (see app.module.ts file).
+       
+       The "operator" [()] that is used here is an exception and cannot be used in
+       other cases, except this one of the ngModel. In order to remember if the []
+       or the () are outside, it help to remember that it is called as:
+
+       [()]  bannana in a box
+       
+      -->
+  <input type="{{  showPassword ? 'text' : 'password'   }}" placeholder="password" [(ngModel)]="password" name="password">
+  <!-- the text of the link can be returned by the toggleLabel method as below -->
+  <!-- <a href (click)="togglePassword()">{{toggleLabel()}}</a> -->
+  <!-- the text of the link can also be set within the template as follows via the ? : operator -->
+  <a href (click)="togglePassword()">{{ showPassword ? 'Hide' : 'Show' }} password</a>
+  <!-- the button simulates the login attempt -->
+  <button (click)="attemptLogin()">Login</button>
+</form>

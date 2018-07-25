@@ -1,0 +1,38 @@
+<button (click)="start()">MOVE ALL</button>
+<button (click)="stop()">STOP ALL</button>
+
+<!-- on click turn the 1st car left -->
+<a href (click)="cars[0].turnLeft(0.1)">Turn A Left</a> -
+<!-- on click turn the 1st car right -->
+<a href (click)="cars[0].turnRight(0.1)">Turn A Right</a>
+<br>
+<!-- on click turn the 2nd car left -->
+<a href (click)="cars[1].turnLeft(0.1)">Turn B Left</a> -
+<!-- on click turn the 2nd car right -->
+<a href (click)="cars[1].turnRight(0.1)">Turn B Right</a>
+
+<!-- show the car xPosition, but without formatting it is a number with many (useless) digits -->
+<!-- so we use a pipe | and a formatter (number) with params to show 3 digits on the left of
+    the decimal point (.) and from 2 up to 4 digits on it's right (i.e. if the 4th digit on
+    the right is 0 then only 3 digits are shown) -->
+<p>{{cars[0].getXPos() | number:"3.2-4"}}</p>
+
+<!-- this is another pipe with the formatter. it presents the cars array in JS notation. Ti is called
+     JSON and is a standard format which is used almost everywhere ( http://json.org/ ) . Since this
+     pipe, formats the given object as JSON with extra spaces and new-line characters, we put it in
+     a pre tag to keep this formatting on screen too.
+    
+     In case you want to convert any object to a JSON string you can use the command JSON.stringify
+     it is called as:
+    
+     let jsonString = JSON.stringify( myObject );
+    
+     but in this format there is no spaces or new-lines. It produces all the content in oneline with no spaces.
+    -->
+<pre>{{ cars | json }}</pre>
+
+<!-- the single car component to which is given the first car object -->
+<app-car [car]="cars[0]"></app-car>
+
+<!-- the single car component to which is given the second car object -->
+<app-car [car]="cars[1]"></app-car>
