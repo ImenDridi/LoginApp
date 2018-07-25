@@ -1,9 +1,0 @@
-label {
-    display: block;
-    margin: 8px;
-}
-
-label input {
-    position: absolute;
-    left: 200px;
-}
